@@ -1,0 +1,15 @@
+@use './colors' as *;
+@use './fonts' as *;
+
+$border:3px;
+$input-left-padding:16px;
+.wave-border{
+    border:$border solid $black;
+    border-radius: 8px;
+}
+.wave-input{
+    padding-left: 16px;
+}
+.wis{
+    width: calc(100% - ( $input-left-padding + ($border*2) ));
+}
