@@ -1,0 +1,26 @@
+@use '../../styles/colors.scss';
+.container{
+    height:100%;
+    display:grid;
+    grid-template-columns: 280px 1fr;
+}
+
+.navigator{
+    border-right: 2px solid colors.$gray;
+}
+
+:host ::ng-deep .mdc-tab{
+    padding:0px 4px 0px 24px;
+}
+:host ::ng-deep .mat-mdc-tab-group, :host ::ng-deep .mat-mdc-tab-body-wrapper{
+    height:100%;
+}
+
+:host ::ng-deep .tab-close{
+    margin-left: 16px;
+    font-size: 18px;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+

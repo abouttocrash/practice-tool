@@ -1,3 +1,32 @@
-<button id="new-test-cta" mat-button routerLink="/new-test">
-    New Test
-</button>  
+<div class="container">
+   <div class="navigator">
+    <mat-list role="list">
+      <mat-list-item id="new-test-cta" style="cursor: pointer;" (click)="newTest()">
+        <mat-icon matListItemIcon>summarize</mat-icon>
+        <div matListItemLine>New Test</div>
+      </mat-list-item>
+    
+      <mat-list-item id="test-list-cta" style="cursor: pointer;" (click)="showList()">
+        <mat-icon matListItemIcon>fact_check</mat-icon>
+        <div matListItemLine>Tests list</div>
+      </mat-list-item>
+    </mat-list>
+    
+   </div>
+   
+   <div>
+    <mat-tab-group 
+      mat-stretch-tabs="false" 
+      mat-align-tabs="start"
+      [selectedIndex]="selected.value"
+      (selectedIndexChange)="selected.setValue($event)"
+      animationDuration="0ms">
+    @for (tab of tabs; track tab; let index = $index) {
+      <mat-tab [label]="tab" >
+          <ng-container #tabcontainer></ng-container>
+      </mat-tab>
+    }
+    </mat-tab-group>
+
+   </div>
+</div>
