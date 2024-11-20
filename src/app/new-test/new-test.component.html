@@ -1,6 +1,13 @@
 
 
 <div class="container overflow">
+    <div class="loader" *ngIf="loading$ | async">
+        <mat-progress-spinner
+        class="example-margin"
+        mode="indeterminate"
+    >
+    </mat-progress-spinner>
+    </div>
     <form id="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
         <div>
             <h1>New test case</h1>
