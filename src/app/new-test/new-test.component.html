@@ -1,56 +1,35 @@
 
 
 <div class="container overflow">
-    <div class="loader" *ngIf="loading$ | async">
-        <mat-progress-spinner
-        class="example-margin"
-        mode="indeterminate"
-    >
-    </mat-progress-spinner>
-    </div>
-    <div class="right-content overflow">
-        <div class="header card">
-            <div>
-                <h1 class="h1-h">New test case</h1>
-                <div class="right-header">
-                    <button form="form" type="submit" class="main-cta" >Create</button>
-                </div>
-            </div>
-            
-            <form id="form" [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
-                <mat-form-field appearance="outline" style="margin-bottom: 20px;">
-                    <mat-label>Enter test name</mat-label>
-                    <input formControlName="name" id="test-name" [(ngModel)]="testName" matInput [placeholder]=namePlaceholder>
-                    <mat-error id="test-name-error" *ngIf="signUpForm.value.name == ''">Test name should not be empty</mat-error>
-                      
-                </mat-form-field>
-                <mat-form-field appearance="outline">
-                    <mat-label>Enter requirement name or id</mat-label>
-                    <input formControlName="req" id="req-name"  [(ngModel)]="reqName"  matInput [placeholder]=reqPlaceholder>
-                    <mat-error id="req-name-error" *ngIf="signUpForm.value.req == ''">Requirement should not be empty</mat-error>
-                </mat-form-field>     
-                <p id="submitted-text" *ngIf="submitted">{{testName}} {{reqName}}</p>
-                    
-            </form>
-        </div>
-           
-        <div class="bottom-body">
-            
-            <div class="build-container overflow card">
-                <div class="steps-header">
-                    <h2 >Test steps</h2>
-                    <button>Add step</button>
-                </div>
-                
-                <div class="test-container overflow">
-                    
-                    <!-- <wave-autocomplete *ngFor="let item of stepsArr" [autoData]="foundSteps" (newStepEvent)="addStep($event)"></wave-autocomplete> -->
-                    <rich-text-wave-auto-complete></rich-text-wave-auto-complete>
-                    <rich-text-wave-auto-complete></rich-text-wave-auto-complete>
-                </div>
+    <form id="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+        <div>
+            <h1>New test case</h1>
+            <div class="right-header">
+                <button form="form" type="submit" class="main-cta" >Create</button>
             </div>
         </div>
+        
+        <mat-form-field appearance="outline" style="margin-bottom: 20px;">
+            <mat-label>Enter test name</mat-label>
+            <input formControlName="name" id="test-name" matInput [placeholder]="namePlaceholder">
+            <mat-error *ngIf="isFieldInvalid('name')">Test name should not be empty</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Enter requirement name or id</mat-label>
+            <input formControlName="req" id="req-name" matInput [placeholder]="reqPlaceholder">
+            <mat-error *ngIf="isFieldInvalid('req')">Requirement should not be empty</mat-error>
+          </mat-form-field>
+        <p id="submitted-text" *ngIf="submitted">{{testName}} {{reqName}}</p>     
+    </form>
+    <div class="build-container">
+        <div class="steps-header">
+            <h2 >Test steps</h2>
+            <button (click)="addStep($event)">Add step</button>
+        </div>
+        
+        <div class="test-container">
+            <rich-text-wave-auto-complete *ngFor="let item of stepsArr;let i = index" [index]="i" [autoData]="foundSteps" (newStepEvent)="addStep($event)"></rich-text-wave-auto-complete>
+        </div>
     </div>
-    
-    
   </div>

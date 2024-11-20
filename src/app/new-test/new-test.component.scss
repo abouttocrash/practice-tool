@@ -6,74 +6,50 @@ $pad-top:24px;
 mat-form-field{
     display: block;
 }
-.h1-h{
-    font-size: 32px;
-    margin:0;
-}
-.card{
-    border-radius: 8px;
-}
+
+
 .loader{
     position:absolute;
     z-index: 999;
 }
-.header{
-    padding:12px 24px 12px 24px;
-    background-color: colors.$white2;
-     
-}
-.header > div:nth-child(1){
+
+form > div:nth-child(1){
     display:grid;
-    grid-template-columns: 1fr 120px;
+    grid-template-columns: 1fr 130px;
  }
 
 .container{
     width: calc(100% - 64px);
-    height:calc(100% - 64px);
+    height:100%;
     overflow-y: scroll;
     display: grid;
-    background-color: colors.$gray;
-    
+    grid-template-rows: 280px 1fr;
+    background-color: colors.$white2;
     padding: 32px;
 }
-.right-content{
-    grid-template-rows: 280px 1fr;
-    row-gap: 32px;
-    display: grid;
-    background-color: colors.$gray;
-}
-.sidebar{
-    background-color: colors.$white2;
-}
-.bottom-body{
-    display:grid;
-}
 
-$side-p:92px;
+
 .build-container{
-    background-color:colors.$white2;
     height:calc(100% - $pad-top);
     width: 100%;
     display: grid;
     grid-template-rows: 64px 1fr;
-    overflow-y: auto;
     
     padding-top:$pad-top;
-    overflow-y: scroll;
     
-    .test-container{
-      
-    //     scrollbar-width: none;  /* Firefox */
-    // }::-webkit-scrollbar {
-    //     display: none;
-     }
+   
 }
-.preview{
-    background-color:colors.$gray;
-}
+
 h1{
     display: inline;
+    font-size: 32px;
+    margin:0;
 }
+h2{
+    font-size: 26px;
+    margin:0;
+}
+
 
 .main-cta{
     font-family: 'Roboto', sans-serif;
@@ -86,20 +62,7 @@ h1{
     font-weight: 500;
     cursor: pointer;
 }
-.test-header{
-    height:100%;
-    position: relative;
-    display: grid;
-    grid-template-columns: 1fr 200px;
-    .right-header{
-        display: flex;
-        align-items: center;
-        .main-cta{
-           margin-left: auto;
-         }
-    }
-     
-}
+
 
 .steps-header{
     display: grid;
@@ -117,8 +80,3 @@ h1{
         background-color: colors.$green;
     }
 }
-
-
-
-
-
