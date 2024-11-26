@@ -75,6 +75,7 @@ h2{
         border-radius: 6px;
         border:none;
         color: colors.$white;
+        grid-column-end:right;
         font-weight: 600;
         font-size: 12px;
         background-color: colors.$green;

@@ -1,11 +1,13 @@
 
 <div class="step-container">
   <div>
-    Step {{index}}
+    <span class="step-number">
+     Step&nbsp;<span>{{index+1}}</span>
+    </span>
   </div>
   <div class="wave-step-cont">
  
-    <div class="rich-text-options">
+    <!-- <div class="rich-text-options">
        <div style="width: 100%;height:36px;">
         <button class="text-style-cta" id="bold-cta" (click)="buttonClicked($event.target!)">
           <mat-icon>format_bold</mat-icon>
@@ -22,29 +24,31 @@
         <button class="text-style-cta" (click)="color()">C</button>
         <button (click)="reset()">R</button>
        </div>
-    </div>
+    </div> -->
     <div #waveRich 
     matAutocompleteOrigin
     [textContent]="model"
     (keydown)="keydown($event)"
     cdkOverlayOrigin #trigger="cdkOverlayOrigin"
     (keyup)="keyup($event)" class="textarea" contenteditable="true" role="textbox">
-        
-    </div>
-    <ng-template
-  cdkConnectedOverlay
-  (overlayOutsideClick)="isOpen = false"
-  [cdkConnectedOverlayOrigin]="trigger"
-  [cdkConnectedOverlayOpen]="isOpen"
->
-  <ul class="example-list">
-    <li>Item 1</li>
-    <li>Item 2</li>
-    <li>Item 3</li>
-  </ul>
-</ng-template>
-</div>
-  <div></div>
+    
+    </div> 
+    <mat-icon class="menu" [matMenuTriggerFor]="menu">more_vert</mat-icon>
+  </div>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>
+      <mat-icon>delete</mat-icon>
+      <span>Remove step</span>
+    </button>
+    <button mat-menu-item disabled>
+      <mat-icon>speaker_notes</mat-icon>
+      <span>Enable Gherkin</span>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>info</mat-icon>
+      <span>Step info</span>
+    </button>
+  </mat-menu>
 </div>
 
 

@@ -2,10 +2,11 @@ import { Component, ElementRef, Input, ViewChild } from '@angular/core';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {MatIconModule} from '@angular/material/icon'; 
+import {MatMenuModule} from '@angular/material/menu'; 
 @Component({
   selector: 'rich-text-wave-auto-complete',
   standalone: true,
-  imports:[OverlayModule,MatIconModule],
+  imports:[OverlayModule,MatIconModule,MatMenuModule],
   templateUrl: './rich-text-wave-auto-complete.component.html',
   styleUrls: ['./rich-text-wave-auto-complete.component.scss']
 })
@@ -14,12 +15,12 @@ export class RichTextWaveAutoCompleteComponent{
   @Input("index") index:number  = 0
   @ViewChild(MatAutocompleteTrigger) _auto!: MatAutocompleteTrigger;
   @ViewChild('waveRich',{static:false})  i!:ElementRef<HTMLDivElement>
-  div!:HTMLDivElement
-  things:number[] = []
-  id =  Math.floor(Math.random() * 999999) + 1;
-  foundMode = false;
-  previous = ""
-  isOpen = false;
+  private div!:HTMLDivElement
+  private things:number[] = []
+  private id =  Math.floor(Math.random() * 999999) + 1;
+  private foundMode = false;
+  private previous = ""
+  private isOpen = false;
   
   waitForKey = false;
   model = ""
@@ -32,7 +33,11 @@ ngAfterViewInit(){
  
 }
 
-buttonClicked(target:EventTarget){
+getText(){
+  return this.div.textContent
+}
+
+private buttonClicked(target:EventTarget){
   this.div.focus()
   let t = target as HTMLElement
   t = t.children.length == 0 ? t = t.parentElement! : t
@@ -43,14 +48,14 @@ buttonClicked(target:EventTarget){
     document.execCommand(t.id.split("-cta")[0])
 }
 
-italic(target: EventTarget){
+private italic(target: EventTarget){
   this.buttonClicked(target)
   document.execCommand("italic")
 }
-reset(){
+private reset(){
   document.execCommand("removeFormat", false, "foreColor");
 }
-color() {
+private color() {
   document.execCommand('styleWithCSS', false);
     document.execCommand('foreColor', false, "rgba(255,0,0,0.5)");
     document.defaultView!.focus();
@@ -64,7 +69,7 @@ color() {
   
     return match.substring(inputText.length);
   }
-selectTextRange(start:number,stop:number){
+private selectTextRange(start:number,stop:number){
   const range = document.createRange();
   const node = this.div.firstChild;
 
@@ -79,7 +84,7 @@ selectTextRange(start:number,stop:number){
 
   return selection!;
 }
-keyup(event: KeyboardEvent): void {
+protected keyup(event: KeyboardEvent): void {
   if (this.waitForKey) return;
 
   if (event.key !== "Backspace") {
@@ -97,7 +102,7 @@ keyup(event: KeyboardEvent): void {
     }
   }
 }
-keydown($event: KeyboardEvent) {
+protected keydown($event: KeyboardEvent) {
   this.waitForKey = false;
   if(this.things.length == 0){
     this.things.push(0)

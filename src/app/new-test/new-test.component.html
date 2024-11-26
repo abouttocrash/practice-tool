@@ -36,7 +36,7 @@
         </div>
         
         <div class="test-container">
-            <rich-text-wave-auto-complete *ngFor="let item of stepsArr;let i = index" [index]="i" [autoData]="foundSteps" (newStepEvent)="addStep($event)"></rich-text-wave-auto-complete>
+            <rich-text-wave-auto-complete #autocomplete *ngFor="let item of stepsArr;let i = index" [index]="i" [autoData]="foundSteps" (newStepEvent)="addStep($event)"></rich-text-wave-auto-complete>
         </div>
     </div>
   </div>
