@@ -45,3 +45,4 @@ node_modules/
 /test/playwright-report/
 /blob-report/
 /test/playwright/.cache/
+/test/selenium/drivers/*

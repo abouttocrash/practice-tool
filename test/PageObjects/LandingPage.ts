@@ -1,19 +1,18 @@
-import { Page } from "@playwright/test"
+import { AsyncPage } from "./AsyncPage";
 
-export class LandingPage {
+export class LandingPage extends AsyncPage{
     private newTestCTA = '#new-test-cta'
-    private readonly page:Page;
-    constructor(page?:Page){
-        this.page = page!;
-    }
+    
+    constructor(){super()}
 
     clickNewTestCTA(){
         return cy.get(this.newTestCTA).click()
     }
 
 
-    //------- async for playwright
-    async clickNewTestAsyncCTA(){
-        return await this.page.locator(this.newTestCTA).click()
+    //------- async for playwright and selenium
+    
+    async clickNewTestCTAAsync(){
+        return await this.clickAsync(this.newTestCTA)
     }
 }
