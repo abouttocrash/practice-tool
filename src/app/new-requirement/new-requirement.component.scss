@@ -1,0 +1,29 @@
+@use '../../styles/colors';
+@use '../../styles/form';
+
+$pad-top:24px;
+
+mat-form-field{
+    display: block;
+}
+
+form > div:nth-child(1){
+    display:grid;
+    grid-template-columns: 1fr 130px;
+ }
+
+.container{
+    width: calc(100% - 64px);
+    height:100%;
+    overflow-y: scroll;
+    display: grid;
+    grid-template-rows: 280px 1fr;
+    background-color: colors.$white2;
+    padding: 32px;
+}
+
+h1{
+    display: inline;
+    font-size: 32px;
+    margin:0;
+}

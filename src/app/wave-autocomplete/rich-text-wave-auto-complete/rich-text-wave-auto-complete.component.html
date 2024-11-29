@@ -25,7 +25,8 @@
         <button (click)="reset()">R</button>
        </div>
     </div> -->
-    <div #waveRich 
+    <div #waveRich
+    name="autocomplete" 
     matAutocompleteOrigin
     [textContent]="model"
     (keydown)="keydown($event)"
@@ -36,7 +37,7 @@
     <mat-icon class="menu" [matMenuTriggerFor]="menu">more_vert</mat-icon>
   </div>
   <mat-menu #menu="matMenu">
-    <button mat-menu-item>
+    <button mat-menu-item (click)="removeClicked()">
       <mat-icon>delete</mat-icon>
       <span>Remove step</span>
     </button>

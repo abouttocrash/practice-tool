@@ -1,13 +1,7 @@
 
 
 <div class="container overflow">
-    <div class="loader" *ngIf="loading$ | async">
-        <mat-progress-spinner
-        class="example-margin"
-        mode="indeterminate"
-    >
-    </mat-progress-spinner>
-    </div>
+    <loader *ngIf="loading$ | async"></loader>
     <form id="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
         <div>
             <h1>New test case</h1>
@@ -27,16 +21,23 @@
             <input formControlName="req" id="req-name" matInput [placeholder]="reqPlaceholder">
             <mat-error *ngIf="isFieldInvalid('req')">Requirement should not be empty</mat-error>
           </mat-form-field>
-        <p id="submitted-text" *ngIf="submitted">{{testName}} {{reqName}}</p>     
+        <p id="submitted-text" *ngIf="submitted">{{testForm.get("name")?.value}} {{reqName}}</p>     
     </form>
     <div class="build-container">
         <div class="steps-header">
             <h2 >Test steps</h2>
-            <button (click)="addStep($event)">Add step</button>
+            <button (click)="addStep(stepsArr.length)">Add step</button>
         </div>
         
-        <div class="test-container">
-            <rich-text-wave-auto-complete #autocomplete *ngFor="let item of stepsArr;let i = index" [index]="i" [autoData]="foundSteps" (newStepEvent)="addStep($event)"></rich-text-wave-auto-complete>
+        <div class="test-container" >
+          <ng-container #container></ng-container>
+            <!-- <rich-text-wave-auto-complete 
+            #autocomplete
+            *ngFor="let item of components;let i = index" [index]="i" 
+            [autoData]="foundSteps"
+            (removeItem)="removeItem($event)">
+            </rich-text-wave-auto-complete> -->
+            
         </div>
     </div>
   </div>

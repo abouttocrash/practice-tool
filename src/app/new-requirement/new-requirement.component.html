@@ -1,0 +1,32 @@
+
+
+<div class="container overflow">
+    
+    <form id="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
+        <div>
+            <h1>New requirement</h1>
+            <div class="right-header">
+                <button form="form" type="submit" class="main-cta" >Create</button>
+            </div>
+        </div>
+        
+        <mat-form-field appearance="outline" style="margin-bottom: 20px;">
+            <mat-label>Enter requirement name</mat-label>
+            <input formControlName="name" id="test-name" matInput placeholder="namePlaceholder">
+            <mat-error *ngIf="isFieldInvalid('name')">Test name should not be empty</mat-error>
+          </mat-form-field>
+          
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input formControlName="desc" id="req-name" matInput placeholder="reqPlaceholder">
+            <mat-error *ngIf="isFieldInvalid('desc')">Requirement should not be empty</mat-error>
+          </mat-form-field> 
+
+          <mat-form-field appearance="outline">
+            <mat-label>Jira ID</mat-label>
+            <input formControlName="id" id="req-name" matInput placeholder="reqPlaceholder">
+            <mat-error *ngIf="isFieldInvalid('id')">Requirement should not be empty</mat-error>
+          </mat-form-field> 
+    </form>
+    
+  </div>

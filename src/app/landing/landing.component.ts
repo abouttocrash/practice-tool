@@ -8,6 +8,7 @@ import { TestListComponent } from '../test-list/test-list.component';
 import { CommonModule } from '@angular/common';
 import {MatListModule} from '@angular/material/list'; 
 import {MatIconModule} from '@angular/material/icon'; 
+import { NewRequirementComponent } from '../new-requirement/new-requirement.component';
 @Component({
   selector: 'app-landing',
   standalone: true,
@@ -41,6 +42,13 @@ export class LandingComponent {
     await this.createXButton()
     this.vcr()[this.tabs.length-1]?.createComponent(NewTestComponent)
   }
+
+  async newRequirement(){
+    this.tabs.push("New requirement")
+    await this.createXButton()
+    this.vcr()[this.tabs.length-1]?.createComponent(NewRequirementComponent)
+  }
+
   //TODO: remove this wait
   timeout(ms:number) {
     return new Promise(resolve => setTimeout(resolve, ms));

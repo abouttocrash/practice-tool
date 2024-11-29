@@ -1,4 +1,4 @@
-
+@use './styles/colors.scss';
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .overflow{
@@ -9,3 +9,14 @@ p, .mat-typography p{
     margin:0;
 }
 
+.main-cta{
+    font-family: 'Roboto', sans-serif;
+    border:none;
+    background-color: colors.$black;
+    color:white;
+    padding:12px 36px 12px 36px;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+}

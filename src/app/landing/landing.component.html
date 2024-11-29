@@ -2,13 +2,17 @@
    <div class="navigator">
     <mat-list role="list">
       <mat-list-item id="new-test-cta" style="cursor: pointer;" (click)="newTest()">
-        <mat-icon matListItemIcon>summarize</mat-icon>
+        <mat-icon matListItemIcon>text_snippet</mat-icon>
         <div matListItemLine>New Test</div>
       </mat-list-item>
     
       <mat-list-item id="test-list-cta" style="cursor: pointer;" (click)="showList()">
         <mat-icon matListItemIcon>fact_check</mat-icon>
         <div matListItemLine>Tests list</div>
+      </mat-list-item>
+      <mat-list-item id="test-list-cta" style="cursor: pointer;" (click)="newRequirement()">
+        <mat-icon matListItemIcon>list_alt_add</mat-icon>
+        <div matListItemLine>New requirement</div>
       </mat-list-item>
     </mat-list>
     

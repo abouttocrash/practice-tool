@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { MatAutocompleteTrigger } from '@angular/material/autocomplete';
 import { OverlayModule } from '@angular/cdk/overlay';
 import {MatIconModule} from '@angular/material/icon'; 
@@ -13,14 +13,14 @@ import {MatMenuModule} from '@angular/material/menu';
 export class RichTextWaveAutoCompleteComponent{
   @Input("autoData") auto!:Array<string>
   @Input("index") index:number  = 0
+  @Output() removeItem = new EventEmitter<RichTextWaveAutoCompleteComponent>();
+  @Output() addItem = new EventEmitter<RichTextWaveAutoCompleteComponent>()
   @ViewChild(MatAutocompleteTrigger) _auto!: MatAutocompleteTrigger;
   @ViewChild('waveRich',{static:false})  i!:ElementRef<HTMLDivElement>
   private div!:HTMLDivElement
   private things:number[] = []
-  private id =  Math.floor(Math.random() * 999999) + 1;
   private foundMode = false;
   private previous = ""
-  private isOpen = false;
   
   waitForKey = false;
   model = ""
@@ -32,9 +32,13 @@ ngAfterViewInit(){
   this.div = this.i.nativeElement
  
 }
+removeClicked(){
+  this.removeItem.emit(this);
+}
+
 
 getText(){
-  return this.div.textContent
+  return this.div.textContent as string
 }
 
 private buttonClicked(target:EventTarget){

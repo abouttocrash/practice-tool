@@ -7,12 +7,6 @@ mat-form-field{
     display: block;
 }
 
-
-.loader{
-    position:absolute;
-    z-index: 999;
-}
-
 form > div:nth-child(1){
     display:grid;
     grid-template-columns: 1fr 130px;
@@ -51,17 +45,7 @@ h2{
 }
 
 
-.main-cta{
-    font-family: 'Roboto', sans-serif;
-    border:none;
-    background-color: colors.$black;
-    color:white;
-    padding:12px 36px 12px 36px;
-    border-radius: 25px;
-    font-size: 18px;
-    font-weight: 500;
-    cursor: pointer;
-}
+
 
 
 .steps-header{
