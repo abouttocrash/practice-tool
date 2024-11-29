@@ -2,10 +2,12 @@ import { Page } from "@playwright/test";
 import { By, until, WebDriver } from "selenium-webdriver";
 
 export class AsyncPage{
-    private page!:Page
+    private page:Page
     private driver!:WebDriver
 
-    constructor(){}
+    constructor(page?:Page){
+        this.page = page!
+    }
 
     setPage(page:Page){this.page = page;}
 

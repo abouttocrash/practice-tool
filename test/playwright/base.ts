@@ -1,18 +1,18 @@
 import {test as base} from "@playwright/test"
-import { LandingPage } from "../PageObjects/LandingPage"
-import { NewTestPage } from "../PageObjects/NewTestPage"
+import { AsyncLandingPage } from "../PageObjects/landingPage/AsyncLandingPage"
+import { AsyncNewTestPage } from "../PageObjects/newTestPage/AsyncNewTestPage"
 
 type MyFixtures = {
-    landingPage:LandingPage
-    newTestPage:NewTestPage
+    landingPage:AsyncLandingPage 
+    newTestPage:AsyncNewTestPage
 }
 
 export const test = base.extend<MyFixtures>({
     landingPage: async ({page},use)=>{
-        await use(new LandingPage(page))
+        await use(new AsyncLandingPage(page))
     },
     newTestPage: async ({page},use)=>{
-        await use(new NewTestPage(page))
+        await use(new AsyncNewTestPage(page))
     },
 })
 

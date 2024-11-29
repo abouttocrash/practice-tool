@@ -1,6 +1,7 @@
 import { defineConfig } from "cypress";
 
 export default defineConfig({
+  watchForFileChanges: false,
   e2e: {
     specPattern: 'test/cypress/e2e/**/*.cy.ts', // Update the path
     supportFile: 'test/cypress/support/e2e.ts', // Update the path

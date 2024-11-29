@@ -5,14 +5,14 @@ import { expect } from "chai";
 import path from 'path';
 import { fileURLToPath } from 'url';
 import * as firefox from 'selenium-webdriver/firefox';
-import { LandingPage } from "../../PageObjects/LandingPage";
-import { NewTestPage } from "../../PageObjects/NewTestPage";
+import {AsyncLandingPage} from '../../PageObjects/landingPage/AsyncLandingPage'
+import { AsyncNewTestPage } from "../../PageObjects/newTestPage/AsyncNewTestPage";
 
   describe("Selenium test",function(){
 
     let driver:WebDriver
-    let landingPagePOM:LandingPage
-    let newTestPagePOM:NewTestPage
+    let AsynclandingPagePOM:AsyncLandingPage
+    let newTestPagePOM:AsyncNewTestPage
     //TODO: this should be part of a config/setup file
     before(async()=>{
       const __filename = fileURLToPath(import.meta.url);
@@ -27,16 +27,16 @@ import { NewTestPage } from "../../PageObjects/NewTestPage";
     })
 
     beforeEach(async()=>{
-      landingPagePOM = new LandingPage()
-      newTestPagePOM = new NewTestPage();
-      landingPagePOM.setDriver(driver)
+      AsynclandingPagePOM = new AsyncLandingPage()
+      newTestPagePOM = new AsyncNewTestPage();
+      AsynclandingPagePOM.setDriver(driver)
       newTestPagePOM.setDriver(driver)
       await driver.get("http://localhost:4200")
     })
 
 
     it('The user should be able to create a test', async function()  {
-      await landingPagePOM.clickNewTestCTAAsync()
+      await AsynclandingPagePOM.clickNewTestCTAAsync()
       await newTestPagePOM.writeTestNameAsync("Test name")
       await newTestPagePOM.writeReqNameAsync("Req name")
       await newTestPagePOM.clickSubmitButtonAsync()
