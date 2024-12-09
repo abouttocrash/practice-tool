@@ -7,27 +7,31 @@ export type Requirement = {
     name:string,
     description:string,
     tags:Tag[],
-    uuid?:string
+    uuid?:string,
+    created?:string
 }
 
 export type Tag = {
-    name:string,
+    tag:string,
     uuid?:string,
-    color:Color,
-    icon:Icon
+    color:string,
+    icon?:Icon
 }
 
 export type Test = {
-    id:string,
+    id?:string,
+    priority:{viewValue:string,value:string}
     req_id:string,
     steps:Step[],
     name:string,
-    tags:Tag[],
-    uuid?:string
+    tags:Tag[] | string[],
+    uuid?:string,
+    created:string
 }
 
 export type Step = {
-    uuid?:string,
-    text:string,
-    tags:Tag[]
+    uuid:string,
+    testId:string,
+    text?:string,
+    tags?:Tag[]
 }

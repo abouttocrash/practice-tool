@@ -11,7 +11,7 @@
     "play": "npx playwright test --ui",
     "cy": "npx cypress open",
     "cy-suite": "npx cypress run --spec test/cypress/e2e/newTest.spec.cy.ts --browser=firefox ",
-    "ex": "npx ts-node express/app.ts",
+    "ex": "npx tsx express/app.ts",
     "sel": "mocha --no-timeout --require ts-node/register test/selenium/e2e/*.ts"
   },
   "private": true,
@@ -29,6 +29,7 @@
     "cors": "^2.8.5",
     "express": "^4.21.1",
     "lowdb": "^7.0.1",
+    "moment": "^2.30.1",
     "rxjs": "~7.8.0",
     "string-similarity-js": "^2.1.4",
     "tslib": "^2.3.0",

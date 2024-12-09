@@ -15,18 +15,19 @@
             <input formControlName="name" id="test-name" matInput placeholder="namePlaceholder">
             <mat-error *ngIf="isFieldInvalid('name')">Test name should not be empty</mat-error>
           </mat-form-field>
-          
-          <mat-form-field appearance="outline">
-            <mat-label>Description</mat-label>
-            <input formControlName="desc" id="req-name" matInput placeholder="reqPlaceholder">
-            <mat-error *ngIf="isFieldInvalid('desc')">Requirement should not be empty</mat-error>
-          </mat-form-field> 
-
+      
           <mat-form-field appearance="outline">
             <mat-label>Jira ID</mat-label>
             <input formControlName="id" id="req-name" matInput placeholder="reqPlaceholder">
             <mat-error *ngIf="isFieldInvalid('id')">Requirement should not be empty</mat-error>
           </mat-form-field> 
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <input formControlName="desc" id="req-name" matInput placeholder="reqPlaceholder">
+            <mat-error *ngIf="isFieldInvalid('desc')">Requirement should not be empty</mat-error>
+          </mat-form-field> 
+          <chips [allTags]="tags"></chips>
     </form>
     
   </div>

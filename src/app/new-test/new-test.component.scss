@@ -3,9 +3,7 @@
 
 $pad-top:24px;
 
-mat-form-field{
-    display: block;
-}
+
 
 form > div:nth-child(1){
     display:grid;
@@ -27,11 +25,8 @@ form > div:nth-child(1){
     height:calc(100% - $pad-top);
     width: 100%;
     display: grid;
-    grid-template-rows: 64px 1fr;
-    
+    grid-template-rows: 52px 48px 1fr;
     padding-top:$pad-top;
-    
-   
 }
 
 h1{
@@ -43,10 +38,6 @@ h2{
     font-size: 26px;
     margin:0;
 }
-
-
-
-
 
 .steps-header{
     display: grid;
@@ -64,4 +55,40 @@ h2{
         font-size: 12px;
         background-color: colors.$green;
     }
+}
+
+.rich-text-options{
+    background-color: colors.$white2;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    display: grid;
+    place-items: center;
+    // margin-left: 84px;
+    margin-bottom: 12px;
+    border-bottom: 2px solid colors.$gray;
+    
+    & .text-style-cta{
+        height:32px;
+        width:32px;
+        margin-right: 4px;
+        border:none;
+        background-color: colors.$white2;
+        cursor: pointer;
+        border-radius: 8px;
+        
+        
+    }
+    & .text-style-cta:hover{
+        background-color: colors.$tx2;
+    }
+    & .test-style-cta-selected{
+        background-color: colors.$tx3;
+    }
+    
+}
+
+:host ::ng-deep mat-icon{
+    font-size: 18px;
+    height:18px;
+    width: 18px;
 }

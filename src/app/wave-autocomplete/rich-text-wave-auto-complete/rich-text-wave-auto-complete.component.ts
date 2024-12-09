@@ -15,6 +15,7 @@ export class RichTextWaveAutoCompleteComponent{
   @Input("index") index:number  = 0
   @Output() removeItem = new EventEmitter<RichTextWaveAutoCompleteComponent>();
   @Output() addItem = new EventEmitter<RichTextWaveAutoCompleteComponent>()
+  @Output() blurred = new EventEmitter<RichTextWaveAutoCompleteComponent>()
   @ViewChild(MatAutocompleteTrigger) _auto!: MatAutocompleteTrigger;
   @ViewChild('waveRich',{static:false})  i!:ElementRef<HTMLDivElement>
   private div!:HTMLDivElement
@@ -38,7 +39,11 @@ removeClicked(){
 
 
 getText(){
-  return this.div.textContent as string
+  const data = {
+    text: this.div.textContent,
+    data: this.div.innerHTML
+  }
+  return JSON.stringify(data)
 }
 
 private buttonClicked(target:EventTarget){
@@ -56,14 +61,8 @@ private italic(target: EventTarget){
   this.buttonClicked(target)
   document.execCommand("italic")
 }
-private reset(){
-  document.execCommand("removeFormat", false, "foreColor");
-}
-private color() {
-  document.execCommand('styleWithCSS', false);
-    document.execCommand('foreColor', false, "rgba(255,0,0,0.5)");
-    document.defaultView!.focus();
-  }
+
+
   private searchString(): string {
     const inputText = this.div.textContent?.toLowerCase() || "";
     if (!inputText) return "";
@@ -132,6 +131,14 @@ protected keydown($event: KeyboardEvent) {
       this.selectTextRange(0,this.div.textContent!.length-1).collapseToEnd()
     }
   }
+}
+onBlur($event:any){
+  this.blurred.emit(this);
+}
+
+getDiv(){
+  this.div.focus()
+  return this.div as HTMLElement
 }
 
 }

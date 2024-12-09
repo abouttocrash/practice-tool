@@ -7,28 +7,12 @@
   </div>
   <div class="wave-step-cont">
  
-    <!-- <div class="rich-text-options">
-       <div style="width: 100%;height:36px;">
-        <button class="text-style-cta" id="bold-cta" (click)="buttonClicked($event.target!)">
-          <mat-icon>format_bold</mat-icon>
-        </button>
-        <button class="text-style-cta" id="italic-cta" (click)="buttonClicked($event.target!)">
-         <mat-icon>format_italic</mat-icon>
-        </button>
-        <button class="text-style-cta" id="underline-cta" (click)="buttonClicked($event.target!)">
-          <mat-icon>format_underlined</mat-icon>
-        </button>
-        <button class="text-style-cta" id="strikethrough-cta" (click)="buttonClicked($event.target!)">
-          <mat-icon>strikethrough_s</mat-icon>
-        </button>
-        <button class="text-style-cta" (click)="color()">C</button>
-        <button (click)="reset()">R</button>
-       </div>
-    </div> -->
+    
     <div #waveRich
     name="autocomplete" 
     matAutocompleteOrigin
     [textContent]="model"
+    (blur)="onBlur($event)"
     (keydown)="keydown($event)"
     cdkOverlayOrigin #trigger="cdkOverlayOrigin"
     (keyup)="keyup($event)" class="textarea" contenteditable="true" role="textbox">

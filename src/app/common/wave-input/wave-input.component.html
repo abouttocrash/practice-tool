@@ -1,0 +1,7 @@
+
+    <mat-form-field appearance="outline" style="margin-bottom: 20px;" style=" display: block;">
+        <mat-label>{{label}}</mat-label>
+        <input [formControl]="$any(control)" [id]="id" matInput [placeholder]="placeholder">
+        <mat-error *ngIf="isFieldInvalid()">{{errorMessage}}</mat-error>
+        <ng-template></ng-template>
+    </mat-form-field>

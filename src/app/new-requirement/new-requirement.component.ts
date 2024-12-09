@@ -1,36 +1,45 @@
-import { Component, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { FormExports } from '../services/FormExports';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { BehaviorSubject, firstValueFrom } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { BehaviorSubject} from 'rxjs';
+import { ChipsComponent } from '../common/chips/chips.component';
+import { Requirement, Tag } from '../../../types/Types';
+import { HttpService } from '../services/http.service';
 
 @Component({
   selector: 'app-new-requirement',
   standalone: true,
-  imports: [FormExports],
+  imports: [FormExports,ChipsComponent],
   templateUrl: './new-requirement.component.html',
   styleUrl: './new-requirement.component.scss'
 })
 export class NewRequirementComponent {
-
-  httpClient = inject(HttpClient)
+  tags:string[] =[]
   loading$ = new BehaviorSubject<boolean>(false);
   testForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     id: new FormControl('', [Validators.required]),
     desc: new FormControl('', [Validators.required])
   });
+  constructor(private http:HttpService){}
+  
+  async ngAfterViewInit(){
+    this.tags = (await this.http.getTags()).data.map((t:Tag)=>{return t.tag})!
+  }
+
+ 
   async onSubmit() {
     
     //this.testForm.markAllAsTouched()
     if (this.testForm.invalid) return;
     this.loading$.next(true)
-    const requirement = {
-      name:this.testForm.get("name")?.value,
-      id:this.testForm.get("id")?.value,
-      description: this.testForm.get("desc")?.value
+    const requirement:Requirement = {
+      name:this.testForm.get("name")?.value!,
+      id:this.testForm.get("id")?.value!,
+      description: this.testForm.get("desc")?.value!,
+      tags:[] as Tag[],
     }
-    await firstValueFrom( this.httpClient.post("http://localhost:3000/requirement",requirement))
+    await this.http.createRequirement(requirement)
     this.loading$.next(false)
 
   }

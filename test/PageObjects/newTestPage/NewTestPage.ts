@@ -8,6 +8,13 @@ export class NewTestPage {
         return cy.get(locators.nameLocator).type(text)
     }
 
+    getErrorForTestNameInput(){
+        return cy.get(locators.nameLocator)
+        .parents(".mat-mdc-form-field")
+        .eq(0)
+        .find("mat-error")
+    }
+
     getSubmittedText(){
         return cy.get(locators.submittedTextLocator)
     }

@@ -1,7 +1,8 @@
 
 
+<loader *ngIf="loading$ | async"></loader>
 <div class="container overflow">
-    <loader *ngIf="loading$ | async"></loader>
+    
     <form id="form" [formGroup]="testForm" (ngSubmit)="onSubmit()">
         <div>
             <h1>New test case</h1>
@@ -9,35 +10,71 @@
                 <button form="form" type="submit" class="main-cta" >Create</button>
             </div>
         </div>
-        
-        <mat-form-field appearance="outline" style="margin-bottom: 20px;">
-            <mat-label>Enter test name</mat-label>
-            <input formControlName="name" id="test-name" matInput [placeholder]="namePlaceholder">
-            <mat-error *ngIf="isFieldInvalid('name')">Test name should not be empty</mat-error>
-          </mat-form-field>
-          
-          <mat-form-field appearance="outline">
+        <wave-input errorMessage="uwu" label="Enter test name" [control]="testForm.get('name')!" ></wave-input>
+
+          <mat-form-field appearance="outline" style=" display: block;">
             <mat-label>Enter requirement name or id</mat-label>
-            <input formControlName="req" id="req-name" matInput [placeholder]="reqPlaceholder">
+            <input 
+              [(ngModel)]="currentReq"
+              [matAutocomplete]="auto"
+              formControlName="req"
+              id="req-name"
+              matInput placeholder="Match the test case to its parent requirement">
             <mat-error *ngIf="isFieldInvalid('req')">Requirement should not be empty</mat-error>
+            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
+              @for (tag of filteredReqs(); track tag) {
+                <mat-option [value]="tag">{{tag}}</mat-option>
+              }
+            </mat-autocomplete>
           </mat-form-field>
-        <p id="submitted-text" *ngIf="submitted">{{testForm.get("name")?.value}} {{reqName}}</p>     
+         
+          <div style="display: grid;align-items: center;grid-template-columns: 1fr 2fr;column-gap: 16px;"> 
+            <mat-form-field appearance="outline" style="display: block;">
+              <mat-label>Priority</mat-label>
+              <mat-select formControlName="priority" >
+                @for (prio of priorities; track prio) {
+                  <mat-option [value]="prio">{{prio.viewValue}}</mat-option>
+                }
+              </mat-select>
+              <mat-error *ngIf="isFieldInvalid('priority')">Priority should not be empty</mat-error>
+            </mat-form-field>
+            <chips #chips style="display: block;" [allTags]="tags"></chips>
+          </div>
+        <p id="submitted-text" *ngIf="submitted">{{testForm.get("name")?.value}}</p>     
     </form>
     <div class="build-container">
         <div class="steps-header">
             <h2 >Test steps</h2>
             <button (click)="addStep(stepsArr.length)">Add step</button>
         </div>
+        <div class="rich-text-options">
+          <div style="width: 100%;height:36px;">
+            <button class="text-style-cta" id="bold-cta" (click)="buttonClicked($event.target!)">
+              <mat-icon>format_bold</mat-icon>
+            </button>
+            <button class="text-style-cta" id="italic-cta" (click)="buttonClicked($event.target!)">
+            <mat-icon>format_italic</mat-icon>
+            </button>
+            <button class="text-style-cta" id="underline-cta" (click)="buttonClicked($event.target!)">
+              <mat-icon>format_underlined</mat-icon>
+            </button>
+            <button class="text-style-cta" id="strikethrough-cta" (click)="buttonClicked($event.target!)">
+              <mat-icon>strikethrough_s</mat-icon>
+            </button>
+            <button class="text-style-cta" (click)="color()">
+              <mat-icon>format_color_text</mat-icon>
+            </button>
+            <button class="text-style-cta">
+              <mat-icon fontSet="material-symbols-outlined">format_ink_highlighter</mat-icon>
+            </button>
+            <button class="text-style-cta" (click)="reset()">
+              <mat-icon>restart_alt</mat-icon>
+            </button>
+          </div>
+        </div>
         
         <div class="test-container" >
           <ng-container #container></ng-container>
-            <!-- <rich-text-wave-auto-complete 
-            #autocomplete
-            *ngFor="let item of components;let i = index" [index]="i" 
-            [autoData]="foundSteps"
-            (removeItem)="removeItem($event)">
-            </rich-text-wave-auto-complete> -->
-            
         </div>
     </div>
   </div>

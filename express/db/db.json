@@ -1,12 +1,149 @@
 {
   "reqs": [
     {
-      "name": "asd",
-      "id": "asd",
-      "description": "das",
-      "uuuid": "4495a1e0-4c8a-4ea3-94f3-7a1f0d2fe1d9"
+      "name": "a new req",
+      "id": "100",
+      "description": "a",
+      "uuid": "bddfa18f-4408-41df-a15b-d0013361ae1e"
     }
   ],
-  "tests": [],
-  "steps": []
+  "tests": [
+    {
+      "uuid": "f0544b70-e472-4736-ade8-294747c3c330",
+      "steps": [
+        {
+          "uuid": "7046c6d6-5fbe-4cbd-8dfd-06a7662375a2",
+          "testId": "f0544b70-e472-4736-ade8-294747c3c330"
+        },
+        {
+          "uuid": "ad8062d6-bb5c-4461-a4ca-ae8a73512063",
+          "testId": "f0544b70-e472-4736-ade8-294747c3c330"
+        }
+      ],
+      "req_id": "1",
+      "name": "The user should be able to create a test",
+      "tags": []
+    },
+    {
+      "uuid": "e884c751-4e86-4c1f-a32e-372589a21602",
+      "steps": [
+        {
+          "uuid": "2104d3ee-6f9d-4f4a-8533-f1178d647ba7",
+          "testId": "e884c751-4e86-4c1f-a32e-372589a21602"
+        }
+      ],
+      "req_id": "2",
+      "name": "a new test was created",
+      "tags": [],
+      "created": "2024-12-03T15:17:12-06:00"
+    },
+    {
+      "uuid": "70108b1a-19c5-407b-9b0a-c4e057bd7a50",
+      "steps": [
+        {
+          "uuid": "efa0e54b-f66b-4918-9d85-ce8fb6932074",
+          "testId": "70108b1a-19c5-407b-9b0a-c4e057bd7a50"
+        }
+      ],
+      "req_id": "a",
+      "name": "a test",
+      "tags": [],
+      "created": "2024-12-04T10:04:48-06:00"
+    },
+    {
+      "uuid": "8e05b928-310f-4681-b552-1fef1ae8c567",
+      "steps": [
+        {
+          "uuid": "8ab32adb-c08a-4e5f-b110-e595416d39b3",
+          "testId": "8e05b928-310f-4681-b552-1fef1ae8c567"
+        }
+      ],
+      "req_id": "Req name",
+      "name": "Test name",
+      "tags": [],
+      "created": "2024-12-04T10:24:15-06:00"
+    },
+    {
+      "uuid": "c3480f50-0899-4a44-b1cd-6abe61d7d22b",
+      "steps": [
+        {
+          "uuid": "53c55cd1-d1e8-47f1-88e1-3f4283fee57a",
+          "testId": "c3480f50-0899-4a44-b1cd-6abe61d7d22b"
+        }
+      ],
+      "req_id": "Req name",
+      "name": "Test name",
+      "tags": [],
+      "created": "2024-12-04T10:25:10-06:00"
+    },
+    {
+      "uuid": "4cd905c3-ace6-4c22-b3ed-152f66b0aed8",
+      "steps": [
+        {
+          "uuid": "f0093007-d790-434c-a85c-5fef4716d2ac",
+          "testId": "4cd905c3-ace6-4c22-b3ed-152f66b0aed8"
+        }
+      ],
+      "req_id": "test",
+      "name": "a",
+      "tags": [],
+      "created": "2024-12-06T14:27:56-06:00"
+    }
+  ],
+  "steps": [
+    {
+      "uuid": "7046c6d6-5fbe-4cbd-8dfd-06a7662375a2",
+      "testId": "f0544b70-e472-4736-ade8-294747c3c330",
+      "text": "{\"text\":\"Clicks on New Test CTA\",\"data\":\"<p>Clicks on New Test CTA<br></p>\"}",
+      "tags": []
+    },
+    {
+      "uuid": "ad8062d6-bb5c-4461-a4ca-ae8a73512063",
+      "testId": "f0544b70-e472-4736-ade8-294747c3c330",
+      "text": "{\"text\":\"clicks create\",\"data\":\"<p>clicks create<br></p>\"}",
+      "tags": []
+    },
+    {
+      "uuid": "2104d3ee-6f9d-4f4a-8533-f1178d647ba7",
+      "testId": "e884c751-4e86-4c1f-a32e-372589a21602",
+      "text": "{\"text\":\"new test\",\"data\":\"<p>new test<br></p>\"}",
+      "tags": []
+    },
+    {
+      "uuid": "efa0e54b-f66b-4918-9d85-ce8fb6932074",
+      "testId": "70108b1a-19c5-407b-9b0a-c4e057bd7a50",
+      "text": "{\"text\":\"\",\"data\":\"\"}",
+      "tags": []
+    },
+    {
+      "uuid": "8ab32adb-c08a-4e5f-b110-e595416d39b3",
+      "testId": "8e05b928-310f-4681-b552-1fef1ae8c567",
+      "text": "{\"text\":\"\",\"data\":\"\"}",
+      "tags": []
+    },
+    {
+      "uuid": "53c55cd1-d1e8-47f1-88e1-3f4283fee57a",
+      "testId": "c3480f50-0899-4a44-b1cd-6abe61d7d22b",
+      "text": "{\"text\":\"\",\"data\":\"\"}",
+      "tags": []
+    },
+    {
+      "uuid": "f0093007-d790-434c-a85c-5fef4716d2ac",
+      "testId": "4cd905c3-ace6-4c22-b3ed-152f66b0aed8",
+      "text": "{\"text\":\"\",\"data\":\"\"}",
+      "tags": []
+    }
+  ],
+  "tags": [
+    {
+      "tag": "Regression",
+      "color": "#ff5b59",
+      "uuid": "dbade66a-0b6c-4dab-ab08-097e301b3c5e"
+    },
+    {
+      "tag": "Smoke",
+      "color": "#ff5b59",
+      "uuid": "c8309db6-5dcb-4386-88ee-f465b35d7ce5"
+    }
+  ]
 }

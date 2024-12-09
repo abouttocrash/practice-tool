@@ -1,7 +1,7 @@
 <div class="container">
    <div class="navigator">
-    <mat-list role="list">
-      <mat-list-item id="new-test-cta" style="cursor: pointer;" (click)="newTest()">
+    <mat-list role="list" [disabled]="tabs.menuDisabled">
+      <mat-list-item  id="new-test-cta" style="cursor: pointer;" (click)="newTest()">
         <mat-icon matListItemIcon>text_snippet</mat-icon>
         <div matListItemLine>New Test</div>
       </mat-list-item>
@@ -10,7 +10,7 @@
         <mat-icon matListItemIcon>fact_check</mat-icon>
         <div matListItemLine>Tests list</div>
       </mat-list-item>
-      <mat-list-item id="test-list-cta" style="cursor: pointer;" (click)="newRequirement()">
+      <mat-list-item id="new-req-cta" style="cursor: pointer;" (click)="newRequirement()">
         <mat-icon matListItemIcon>list_alt_add</mat-icon>
         <div matListItemLine>New requirement</div>
       </mat-list-item>
@@ -22,11 +22,12 @@
     <mat-tab-group 
       mat-stretch-tabs="false" 
       mat-align-tabs="start"
-      [selectedIndex]="selected.value"
-      (selectedIndexChange)="selected.setValue($event)"
+      [selectedIndex]="tabs.selected.value"
+      (animationDone)="tabs.animation($event)"
+      (selectedIndexChange)="tabs.selected.setValue($event)"
       animationDuration="0ms">
-    @for (tab of tabs; track tab; let index = $index) {
-      <mat-tab [label]="tab" >
+    @for (tab of tabs.tabs; track tab; let index = $index) {
+      <mat-tab [label]="tab.label" >
           <ng-container #tabcontainer></ng-container>
       </mat-tab>
     }
