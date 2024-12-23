@@ -14,7 +14,7 @@ import { HttpService } from '../services/http.service';
   styleUrl: './new-requirement.component.scss'
 })
 export class NewRequirementComponent {
-  tags:string[] =[]
+  tags:Tag[] =[]
   loading$ = new BehaviorSubject<boolean>(false);
   testForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
@@ -24,7 +24,7 @@ export class NewRequirementComponent {
   constructor(private http:HttpService){}
   
   async ngAfterViewInit(){
-    this.tags = (await this.http.getTags()).data.map((t:Tag)=>{return t.tag})!
+    this.tags = (await this.http.getTags()).data!
   }
 
  

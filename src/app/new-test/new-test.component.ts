@@ -6,7 +6,7 @@ import { RichTextWaveAutoCompleteComponent } from '../wave-autocomplete/rich-tex
 import { BehaviorSubject } from 'rxjs';
 import { MatMenuModule } from '@angular/material/menu';
 import { TabsService } from '../services/tabs.service';
-import { Tag, Test } from '../../../types/Types';
+import { Requirement, Tag, Test } from '../../../types/Types';
 import { HttpService } from '../services/http.service';
 import {MatSelectModule} from '@angular/material/select'; 
 import { ChipsComponent } from '../common/chips/chips.component';
@@ -25,7 +25,7 @@ export class NewTestComponent {
   @ViewChild('chips') chips!:ChipsComponent
   tags:Tag[] = []
   readonly currentReq = model('');
-  allReqs: string[] = [];
+  allReqs: Requirement[] = [];
   priorities = [
     {value:"0",viewValue:"Highest"}
   ]
@@ -35,7 +35,7 @@ export class NewTestComponent {
   submitted = false;
   foundSteps = ["test 1","test 2"]
   loading$ = new BehaviorSubject<boolean>(false);
-  filteredReqs: Signal<string[]> = signal<string[]>([])
+  filteredReqs: Signal<Requirement[]> = signal<Requirement[]>([])
   testForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     req: new FormControl('', [Validators.required]),
@@ -46,11 +46,11 @@ export class NewTestComponent {
   async ngAfterViewInit(){
     this.addStep(0)
     const r = await this.http.getAllRequirements()
-    this.allReqs = r.data.map((re:any)=>{return re.name})
+    this.allReqs = r.data
     this.filteredReqs = computed(() => {
       const currentReq = this.currentReq().toLowerCase();
       return currentReq
-        ? this.allReqs.filter(r => r.toLowerCase().includes(currentReq))
+        ? this.allReqs.filter(r => r.name.toLowerCase().includes(currentReq))
         : this.allReqs.slice();
     });
     this.tags = (await this.http.getTags()).data
@@ -59,26 +59,32 @@ export class NewTestComponent {
   async onSubmit() {
     this.testForm.markAllAsTouched()
     if (this.testForm.invalid) return;
+    const selectedReq = this.testForm.get<string>("req")!.value as Requirement
     const test:Test = {
       id:"",
       priority:this.testForm.get<string>("priority")!.value,
-      req_id:this.testForm.get<string>("req")!.value,
+      req_id:selectedReq.id,
       steps:this.getSteps(),
       name:this.testForm.get<string>("name")!.value,
       tags:this.chips.getSelectedTagsAsIds(),
       created: ""
     }
     this.loading$.next(true)
-    //await this.http.createTest(test)
+    await this.http.createTest(test)
     this.tabs.updateTabName(this.tabs.getTabIndex(this.id),test.name)
     this.loading$.next(false)
     this.submitted = true
   }
 
-  selected(event: MatAutocompleteSelectedEvent): void {
+  selected(event: MatAutocompleteSelectedEvent) {
     
     this.currentReq.set('');
   }
+
+  getValue(n:Requirement){
+    return n.name
+  }
+
 
   getSteps(){
     return this.stepsArr.map(s=>{

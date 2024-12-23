@@ -12,21 +12,21 @@
         </div>
         <wave-input errorMessage="uwu" label="Enter test name" [control]="testForm.get('name')!" ></wave-input>
 
-          <mat-form-field appearance="outline" style=" display: block;">
-            <mat-label>Enter requirement name or id</mat-label>
-            <input 
-              [(ngModel)]="currentReq"
-              [matAutocomplete]="auto"
-              formControlName="req"
-              id="req-name"
-              matInput placeholder="Match the test case to its parent requirement">
-            <mat-error *ngIf="isFieldInvalid('req')">Requirement should not be empty</mat-error>
-            <mat-autocomplete #auto="matAutocomplete" (optionSelected)="selected($event)">
-              @for (tag of filteredReqs(); track tag) {
-                <mat-option [value]="tag">{{tag}}</mat-option>
-              }
-            </mat-autocomplete>
-          </mat-form-field>
+        <mat-form-field appearance="outline" style=" display: block;">
+          <mat-label>Enter requirement name or id</mat-label>
+          <input 
+            [(ngModel)]="currentReq"
+            [matAutocomplete]="auto"
+            formControlName="req"
+            id="req-name"
+            matInput placeholder="Match the test case to its parent requirement">
+          <mat-error *ngIf="isFieldInvalid('req')">Requirement should not be empty</mat-error>
+          <mat-autocomplete [displayWith]="getValue" #auto="matAutocomplete" (optionSelected)="selected($event)">
+            @for (req of filteredReqs(); track req) {
+              <mat-option [value]="req">{{req.name}}</mat-option>
+            }
+          </mat-autocomplete>
+        </mat-form-field>
          
           <div style="display: grid;align-items: center;grid-template-columns: 1fr 2fr;column-gap: 16px;"> 
             <mat-form-field appearance="outline" style="display: block;">

@@ -1,0 +1,4 @@
+@use '../../styles/colors';
+mat-list-item{
+    border-bottom: 2px solid colors.$gray;
+}

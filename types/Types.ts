@@ -23,6 +23,7 @@ export type Test = {
     priority:{viewValue:string,value:string}
     req_id:string,
     steps:Step[],
+    stepCount?:number
     name:string,
     tags:Tag[] | string[],
     uuid?:string,

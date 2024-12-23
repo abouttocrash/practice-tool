@@ -5,8 +5,15 @@
 - [] Validate test name is not too similar
 - [x] Requirement should come from a list of requirements
 - [x] The name of the tab should change to the test name once created
+- [x] Create test ID based on the requirement ID
 
 ## Test list
+
+- [] display the number of steps
+- [] Display the test ID
+- [] Display the tags
+- [] Display the priority
+- [] On click, display the whole test data in the right
 
 
 ## New requirement

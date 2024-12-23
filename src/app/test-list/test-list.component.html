@@ -1,7 +1,7 @@
 
 <mat-list role="list">
     <mat-list-item *ngFor="let test of tests" style="cursor: pointer;">
-      <mat-icon matListItemIcon>text_snippet</mat-icon>
-      <div matListItemLine>{{test.name}}</div>
+      <div matListItemLine>{{test.id}} {{test.name}}</div>
+      <div matListItemLine>{{test.stepCount}}</div>
     </mat-list-item>
 </mat-list>

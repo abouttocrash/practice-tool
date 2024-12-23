@@ -38,7 +38,7 @@ app.get('/', (req:Request, res:Response) => {
 
 app.get('/test', async(req:Request, res:Response) => {
     let tests = await db.data.tests.map(t=>{
-      return {uuid:t.uuid,name:t.name,stepCount:t.steps.length}
+      return {uuid:t.uuid,name:t.name,stepCount:t.steps.length,id:t.id}
     })
     res.status(200).send({status:"SUCCESS",data:tests})
 })
@@ -76,12 +76,14 @@ app.post('/test', async (req:Request, res:Response) => {
       steps.push({uuid:s.uuid,testId:s.testId})
       await db.update(({ steps }) => steps.push(s))
     }
+    let count = await db.data.tests.filter((t:Test)=>{return t.req_id == req.body.req_id}).length + 1
     const test:Test = {
       uuid:req.body.uuid,
       steps:steps,
       req_id:req.body.req_id,
       name:req.body.name,
       priority:req.body.priority,
+      id:req.body.req_id+"-"+ (count.toString().padStart(4, '0')),
       tags:[],
       created:timeNow.format(moment.defaultFormat)
     }
