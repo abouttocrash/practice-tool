@@ -1,6 +1,6 @@
 ## New test page
 - [x] Enter test name should not be empty when creating
-- [] create a test with priority
+- [x] create a test with priority
 - [] Validate test name is not duplicated
 - [] Validate test name is not too similar
 - [x] Requirement should come from a list of requirements
@@ -13,7 +13,9 @@
 - [] Display the test ID
 - [] Display the tags
 - [] Display the priority
-- [] On click, display the whole test data in the right
+- [] On click
+  - [x] obtener el test
+  - [] display the whole test data in the right
 
 
 ## New requirement

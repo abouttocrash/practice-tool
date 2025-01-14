@@ -1,5 +1,5 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { firstValueFrom } from 'rxjs';
 import { Requirement, Tag, Test } from '../../../types/Types';
 export type EXResponse<T> = {
@@ -14,6 +14,7 @@ export class HttpService {
   private readonly endpoints = {
     REQS:'/requirement',
     TEST:'/test',
+    TESTS:'/tests',
     TAGS:'/tag'
   }
   httpClient = inject(HttpClient)
@@ -43,13 +44,19 @@ export class HttpService {
 
   async getAllTests(){
     return await firstValueFrom(
-       this.httpClient.get<EXResponse<Test[]>>(`${this.hh}${this.endpoints.TEST}`)
+       this.httpClient.get<EXResponse<Test[]>>(`${this.hh}${this.endpoints.TESTS}`)
     )
   }
 
   async getTags(){
     return await firstValueFrom(
       this.httpClient.get<EXResponse<Tag[]>>(`${this.hh}${this.endpoints.TAGS}`)
+    )
+  }
+  async getTest(test:Test){
+    let data  = new HttpParams().set("id",test.uuid!)
+    return await firstValueFrom(
+      this.httpClient.get<EXResponse<Test[]>>(`${this.hh}${this.endpoints.TEST}`,{params:data})
     )
   }
 }

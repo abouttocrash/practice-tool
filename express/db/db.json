@@ -106,6 +106,24 @@
       "id": "100-0001",
       "tags": [],
       "created": "2024-12-20T20:52:59-06:00"
+    },
+    {
+      "uuid": "4434a8ab-7cce-4e4c-8dc1-a9100545b141",
+      "steps": [
+        {
+          "uuid": "66634eb8-51a3-429a-a8a0-968216aa77f8",
+          "testId": "4434a8ab-7cce-4e4c-8dc1-a9100545b141"
+        }
+      ],
+      "req_id": "100",
+      "name": "a test",
+      "priority": {
+        "value": "1",
+        "viewValue": "High"
+      },
+      "id": "100-0002",
+      "tags": [],
+      "created": "2025-01-14T09:39:38-06:00"
     }
   ],
   "steps": [
@@ -154,6 +172,12 @@
     {
       "uuid": "f440ebac-73fd-451e-b552-e4b61f10ce05",
       "testId": "8b4299d9-ab78-47ea-b9c8-face08fc3d48",
+      "text": "{\"text\":\"\",\"data\":\"\"}",
+      "tags": []
+    },
+    {
+      "uuid": "66634eb8-51a3-429a-a8a0-968216aa77f8",
+      "testId": "4434a8ab-7cce-4e4c-8dc1-a9100545b141",
       "text": "{\"text\":\"\",\"data\":\"\"}",
       "tags": []
     }

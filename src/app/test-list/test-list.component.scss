@@ -1,4 +1,8 @@
 @use '../../styles/colors';
-mat-list-item{
+mat-drawer-container{
+    height:100%;
+}
+.list-item{
     border-bottom: 2px solid colors.$gray;
+    height:54px;
 }

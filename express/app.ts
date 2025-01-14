@@ -36,11 +36,15 @@ app.get('/', (req:Request, res:Response) => {
     res.status(200).send(":)))")
 })
 
+app.get('/tests', async(req:Request, res:Response) => {
+  let tests = await db.data.tests.map(t=>{
+    return {uuid:t.uuid,name:t.name,stepCount:t.steps.length,id:t.id}
+  })
+  res.status(200).send({status:"SUCCESS",data:tests})
+})
 app.get('/test', async(req:Request, res:Response) => {
-    let tests = await db.data.tests.map(t=>{
-      return {uuid:t.uuid,name:t.name,stepCount:t.steps.length,id:t.id}
-    })
-    res.status(200).send({status:"SUCCESS",data:tests})
+  let test = await db.data.tests.find(t=>{return t.uuid == req.query["id"]})
+  res.status(200).send({status:"SUCCESS",data:test})
 })
 app.post('/requirement', async (req:Request, res:Response) => {
     console.log(req.body)

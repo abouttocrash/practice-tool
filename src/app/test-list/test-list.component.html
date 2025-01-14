@@ -1,7 +1,19 @@
 
-<mat-list role="list">
-    <mat-list-item *ngFor="let test of tests" style="cursor: pointer;">
-      <div matListItemLine>{{test.id}} {{test.name}}</div>
-      <div matListItemLine>{{test.stepCount}}</div>
-    </mat-list-item>
-</mat-list>
+
+  <mat-drawer-container hasBackdrop="true">
+    
+    <mat-drawer #drawer mode="over" position="end">
+      <p>{{test.name}}</p>
+    </mat-drawer>
+    <mat-drawer-content>
+      <mat-list role="list">
+        <div class="list-item" *ngFor="let test of tests" style="cursor: pointer;" (click)="getTest(test)">
+          <div >
+            <p>{{test.id}}</p>
+             <p class="inter-600"> Whereas recognition of the inherent dignity</p></div>
+          <div >{{test.stepCount}}</div>
+        </div>
+      </mat-list>
+    </mat-drawer-content>
+  </mat-drawer-container>
+  

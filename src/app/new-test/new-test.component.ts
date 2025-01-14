@@ -27,7 +27,11 @@ export class NewTestComponent {
   readonly currentReq = model('');
   allReqs: Requirement[] = [];
   priorities = [
-    {value:"0",viewValue:"Highest"}
+    {value:"0",viewValue:"Highest"},
+    {value:"1",viewValue:"High"},
+    {value:"2",viewValue:"Normal"},
+    {value:"3",viewValue:"Low"},
+    {value:"4",viewValue:"Lowest"},
   ]
   lastBlurred!:RichTextWaveAutoCompleteComponent
   id = ""
